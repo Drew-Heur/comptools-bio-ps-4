@@ -7,12 +7,10 @@ headers = {"X-eBirdApiToken": API_KEY}
 
 # Recent observations in Florida (region code US-FL)
 url = f"{BASE_URL}/data/obs/US-FL/recent"
-params = {"maxResults": 50}
+params = {"maxResults": 10000}
 
 response = requests.get(url, headers=headers, params=params)
 response.raise_for_status()  # raises an error if the request failed
 
 observations = response.json()  # list of dicts
 
-for obs in observations[:10]:
-    print(obs["comName"], obs["howMany"] if "howMany" in obs else "?", obs["locName"])
